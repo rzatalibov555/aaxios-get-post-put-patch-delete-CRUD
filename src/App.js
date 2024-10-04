@@ -5,7 +5,7 @@ import './App.css';
 // import { useEffect, useState } from 'react';
 // import useCounter from './hooks/useCounter';
 // import useToggle from './hooks/useToggle';
-
+import { useState } from 'react';
 import useCopy from './hooks/useCopy';
 // const BASE_URL = "http://localhost:3005"
 
@@ -44,46 +44,46 @@ function App() {
 
   // useEffect(()=>{
 
-    // ======================= GET ============================
-    // getAllUsers()
+  // ======================= GET ============================
+  // getAllUsers()
 
-    // ======================= GET BY ID ============================
-    // get_single_user(2)
+  // ======================= GET BY ID ============================
+  // get_single_user(2)
 
-    // ======================= INSERT DATA  V1 - post ============================
-    // INSERT DATA  V1             //// post
-    // add_user({
-    //   "username": "Ayxan",
-    //   "password": "111"
-    // })
+  // ======================= INSERT DATA  V1 - post ============================
+  // INSERT DATA  V1             //// post
+  // add_user({
+  //   "username": "Ayxan",
+  //   "password": "111"
+  // })
 
-    // ======================= INSERT DATA  V2 - post ============================
-    // const new_user = {
-    //     "username": "Telebe",
-    //     "password": "Muellimov",
-    //     "post_id": Math.floor(Math.random() * 10)
-    // }
+  // ======================= INSERT DATA  V2 - post ============================
+  // const new_user = {
+  //     "username": "Telebe",
+  //     "password": "Muellimov",
+  //     "post_id": Math.floor(Math.random() * 10)
+  // }
 
-    // add_user(new_user)
+  // add_user(new_user)
 
-    // ======================== UPDATE DATA ===========================
-    // const user_data = {
-    //   "username": "Elmeddin007",
-    //   "password": "Ateshovov022"
-    // }
-    // update_user(5, user_data) // PUT: update zamani Elave etmediyin deyeri silir
+  // ======================== UPDATE DATA ===========================
+  // const user_data = {
+  //   "username": "Elmeddin007",
+  //   "password": "Ateshovov022"
+  // }
+  // update_user(5, user_data) // PUT: update zamani Elave etmediyin deyeri silir
 
 
-    // ======================== UPDATE DATA ===========================
-    // const user_data = {
-    //   "username": "Elmeddin007",
-    //   "password": "Ateshovov022"
-    // }
-    // update_user_patch(5, user_data) // Patch: Movcud deyerleri saxlayir, yenilenmiw deyerleri yenileyir
-    
+  // ======================== UPDATE DATA ===========================
+  // const user_data = {
+  //   "username": "Elmeddin007",
+  //   "password": "Ateshovov022"
+  // }
+  // update_user_patch(5, user_data) // Patch: Movcud deyerleri saxlayir, yenilenmiw deyerleri yenileyir
 
-    // ======================== DELETE DATA ===========================
-    // delete_user(10)
+
+  // ======================== DELETE DATA ===========================
+  // delete_user(10)
 
 
   // },[])
@@ -119,7 +119,7 @@ function App() {
   // },[])
 
 
-// ===================================================================================
+  // ===================================================================================
 
 
   // const {count, artir, azalt} = useCounter()
@@ -132,28 +132,44 @@ function App() {
   //   </div>
   // );
 
-// ===================================================================================
+  // ===================================================================================
 
-//   const {open, change} = useToggle()
+  //   const {open, change} = useToggle()
 
-//   return (
-//     <div>
-//         {open && <div style={{"width": "200px", "height": "200px", "background":"blue"}}>Menu</div>}
-//        <button onClick={change}>{open ? "Close" : "Open"}</button>
-//     </div>
-//   );
+  //   return (
+  //     <div>
+  //         {open && <div style={{"width": "200px", "height": "200px", "background":"blue"}}>Menu</div>}
+  //        <button onClick={change}>{open ? "Close" : "Open"}</button>
+  //     </div>
+  //   );
 
 
 
-// ===================================================================================
+  // ===================================================================================
+  const [inputText, setInputText] = useState("");
+  const [copied, copy] = useCopy(inputText)
+  
 
-    const [copied, copy] = useCopy("Hello world")
-    return(
-      <div>
-        {copied && "Copieds"}
-        <button onClick={copy}>Copy</button>
-      </div>
-    )
+  const handleInputChange = (e) => {
+    setInputText(e.target.value);
+  };
+
+  return (
+
+    <div>
+      <input
+        type="text"
+        value={inputText}
+        onChange={handleInputChange}
+        placeholder="Enter text to copy"
+      />
+
+      <hr />
+
+      {copied && "Copieds"}
+      <button onClick={copy}>Copy</button>
+    </div>
+  )
 }
 
 export default App;
