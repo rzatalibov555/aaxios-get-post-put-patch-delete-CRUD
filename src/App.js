@@ -1,44 +1,48 @@
 
 import './App.css';
-import axios from 'axios';
-import { useEffect } from 'react';
+// import axios from 'axios';
+// import { useState } from 'react';
+// import { useEffect, useState } from 'react';
+// import useCounter from './hooks/useCounter';
+// import useToggle from './hooks/useToggle';
 
-const BASE_URL = "http://localhost:3005"
+import useCopy from './hooks/useCopy';
+// const BASE_URL = "http://localhost:3005"
 
 function App() {
 
-  const getAllUsers = async() => {
-    const response = await axios.get(`${BASE_URL}/users`)
-    console.log(response.data)
-  }
+  // const getAllUsers = async() => {
+  //   const response = await axios.get(`${BASE_URL}/users`)
+  //   console.log(response.data)
+  // }
 
-  const get_single_user = async(user_id) => {
-    const response = await axios.get(`${BASE_URL}/users/${user_id}`)
-    console.log(response.data)
-  }
+  // const get_single_user = async(user_id) => {
+  //   const response = await axios.get(`${BASE_URL}/users/${user_id}`)
+  //   console.log(response.data)
+  // }
 
-  const add_user = async(new_user) => {
-    const response = await axios.post(`${BASE_URL}/users`,new_user)
-    console.log(response)
-  }
+  // const add_user = async(new_user) => {
+  //   const response = await axios.post(`${BASE_URL}/users`,new_user)
+  //   console.log(response)
+  // }
 
-  const update_user = async(user_id, user_data) => {
-    const response = await axios.put(`${BASE_URL}/users/${user_id}`, user_data)
-    console.log(response)
-  }
+  // const update_user = async(user_id, user_data) => {
+  //   const response = await axios.put(`${BASE_URL}/users/${user_id}`, user_data)
+  //   console.log(response)
+  // }
 
-  const update_user_patch = async(user_id, user_data) => {
-    const response = await axios.patch(`${BASE_URL}/users/${user_id}`, user_data)
-    console.log(response)
-  }
-
-
-  const delete_user = async(user_id) => {
-    await axios.delete(`${BASE_URL}/users/${user_id}`)
-  }
+  // const update_user_patch = async(user_id, user_data) => {
+  //   const response = await axios.patch(`${BASE_URL}/users/${user_id}`, user_data)
+  //   console.log(response)
+  // }
 
 
-  useEffect(()=>{
+  // const delete_user = async(user_id) => {
+  //   await axios.delete(`${BASE_URL}/users/${user_id}`)
+  // }
+
+
+  // useEffect(()=>{
 
     // ======================= GET ============================
     // getAllUsers()
@@ -82,50 +86,74 @@ function App() {
     // delete_user(10)
 
 
-  },[])
+  // },[])
 
 
 
 
 
-  const get_user_id = async(user_id) => {
-    const response = await axios.get(`${BASE_URL}/users/${user_id}`)
-    // console.log(response)
-    return response.data.post_id
-  }
+  // const get_user_id = async(user_id) => {
+  //   const response = await axios.get(`${BASE_URL}/users/${user_id}`)
+  //   // console.log(response)
+  //   return response.data.post_id
+  // }
 
 
-  const get_post_id = async(post_id) => {
-    const response = await axios.get("https://jsonplaceholder.typicode.com/posts/"+post_id)
-    return response.data
-  }
-
-
-
-  const get_post = async() => {
-      const get_user_post_id = await get_user_id(37)
-
-      const post_data = await get_post_id(get_user_post_id)
-      console.log(post_data)
-  }
-
-  useEffect(()=>{
-    get_post()
-    // get_user_id(1)
-  },[])
+  // const get_post_id = async(post_id) => {
+  //   const response = await axios.get("https://jsonplaceholder.typicode.com/posts/"+post_id)
+  //   return response.data
+  // }
 
 
 
+  // const get_post = async() => {
+  //     const get_user_post_id = await get_user_id(37)
+
+  //     const post_data = await get_post_id(get_user_post_id)
+  //     console.log(post_data)
+  // }
+
+  // useEffect(()=>{
+  //   get_post()
+  //   // get_user_id(1)
+  // },[])
+
+
+// ===================================================================================
+
+
+  // const {count, artir, azalt} = useCounter()
+
+  // return (
+  //   <div>
+  //      <div>{count}</div>
+  //       <button onClick={artir}>++</button>
+  //       <button onClick={azalt}>--</button>
+  //   </div>
+  // );
+
+// ===================================================================================
+
+//   const {open, change} = useToggle()
+
+//   return (
+//     <div>
+//         {open && <div style={{"width": "200px", "height": "200px", "background":"blue"}}>Menu</div>}
+//        <button onClick={change}>{open ? "Close" : "Open"}</button>
+//     </div>
+//   );
 
 
 
+// ===================================================================================
 
-
-  return (
-    <div>
-
-    </div>
-  );
+    const [copied, copy] = useCopy("Hello world")
+    return(
+      <div>
+        {copied && "Copieds"}
+        <button onClick={copy}>Copy</button>
+      </div>
+    )
 }
 
 export default App;
